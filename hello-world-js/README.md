@@ -20,7 +20,7 @@ cd /repository/directory
 Build the image:
 
 ```bash
-docker build . <image_tag>
+docker build . --tag <image_tag>
 ```
 
 **Note:** for using IBM Container registry, `<image_tag>` format should be `us.icr.io/<my_namespace>/<my_repository>:<my_tag>`

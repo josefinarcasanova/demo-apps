@@ -44,7 +44,7 @@ def insert_data(json_object):
 
 def main():
     # old_data = get_data()
-    current_time = datetime.datetime.today().strftime("%m/%d/%Y, %H:%M:%S")
+    current_time = datetime.datetime.today().strftime("%m/%d/%Y, %H:%M:%S GMT-3")
 
     json_object = {
         'current_time' : current_time
@@ -52,7 +52,7 @@ def main():
 
     result = insert_data(json_object)
 
-    print(str(result))
+    print('Successfully inserted new registry into database.\nRegistry ', json_object)
 
 if __name__ == '__main__':
     main()                      # Run Main program

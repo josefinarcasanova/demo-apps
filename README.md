@@ -27,7 +27,7 @@ cd /repository/directory
 Build the image:
 
 ```bash
-docker build . <image_tag>
+docker build . --tag <image_tag>
 ```
 
 **Note:** for using IBM Container registry, `<image_tag>` format should be `us.icr.io/<my_namespace>/<my_repository>:<my_tag>`
@@ -51,3 +51,21 @@ docker image list
 ```
 
 To list all built images.
+
+## Push images to ICR
+
+Push image to ICR
+
+```bash
+docker push <image_tag>
+```
+
+Where `<image_tag>` has the following format: `<region>.icr.io/<namespace>/<repository>:<tag>`
+
+- - - 
+
+If the image isn't tag in this way, fix it by re-tagging it:
+
+```bash
+docker tag <local_tag> us.icr.io/<namespace>/<repository>:<tag>
+```
