@@ -33,7 +33,7 @@ def insert_data(json_object):
     collection_name = environ['COLLECTION_NAME']
     collection = database[collection_name]
 
-    # Insert new publication
+    # Insert new item
     insert_result = collection.insert_one(json_object)  
     
     # Close database connection
@@ -44,7 +44,7 @@ def insert_data(json_object):
 
 def main():
     # old_data = get_data()
-    current_time = datetime.datetime.today().strftime("%m/%d/%Y, %H:%M:%S GMT-3")
+    current_time = datetime.datetime.today().strftime("%d/%m/%Y, %H:%M:%S GMT-3")
 
     json_object = {
         'current_time' : current_time

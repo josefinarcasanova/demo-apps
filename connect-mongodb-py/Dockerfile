@@ -11,7 +11,7 @@ RUN pip3 install -r requirements.txt
 COPY . .
 
 # Expose port
-EXPOSE 8080
+# EXPOSE 8080
 
 # Run main script
 CMD [ "python", "./main.py" ]
