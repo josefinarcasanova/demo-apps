@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: picalc-pr-
+spec:
+  pipelineRef:
+    name: build-and-deploy-pipeline
+  params:
+    - name: gitUrl
+      value: https://github.com/IBM/tekton-tutorial
+    - name: gitRevision
+      value: beta-update
+    - name: pathToYamlFile
+      value: ./deployment.yaml
+    - name: imageUrl
+      value: us.icr.io/jrcasan-demo-apps/hello-world-js
+    - name: imageTag
+      value: latest
+  serviceAccountName: pipeline-account
+  workspaces:
+    - name: git-source
+      persistentVolumeClaim:
+        claimName: pipeline-pvc

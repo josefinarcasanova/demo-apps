@@ -1,0 +1,22 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: hello-world-js
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: hello-world-js
+  template:
+    metadata:
+      labels:
+        run: hello-world-js
+    spec:
+      containers:
+        - name: hello-world-js
+          image: us.icr.io/jrcasan-demo-apps/hello-world-js:latest
+          ports:
+            - name: http-server
+              containerPort: 8080
+      imagePullSecrets:
+        - name: all-icr-io
