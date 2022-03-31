@@ -1,17 +1,19 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  generateName: picalc-pr-
+  generateName: hello-world-js-
 spec:
   pipelineRef:
     name: build-and-deploy-pipeline
   params:
     - name: gitUrl
-      value: https://github.com/IBM/tekton-tutorial
+      value: https://github.com/josefinarcasanova/demo-apps
     - name: gitRevision
-      value: beta-update
-    - name: pathToYamlFile
-      value: ./deployment.yaml
+      value: master
+    - name: pathToContext
+      value: hello-world-js
+    - name: deployment_yaml
+      value: hello-world-js/deployment.yaml
     - name: imageUrl
       value: us.icr.io/jrcasan-demo-apps/hello-world-js
     - name: imageTag
@@ -20,4 +22,4 @@ spec:
   workspaces:
     - name: git-source
       persistentVolumeClaim:
-        claimName: pipeline-pvc
+        claimName: pvc-pipeline

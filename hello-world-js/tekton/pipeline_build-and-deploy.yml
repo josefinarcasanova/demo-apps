@@ -35,7 +35,7 @@ spec:
         - name: revision
           value: "$(params.gitRevision)"
         - name: subdirectory
-          value: "."
+          value: "$(params.pathToContext)"
         - name: deleteExisting
           value: "true"
     - name: source-to-image

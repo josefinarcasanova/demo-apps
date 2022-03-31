@@ -20,3 +20,12 @@ spec:
               containerPort: 8080
       imagePullSecrets:
         - name: all-icr-io
+      volumeMounts:
+        - name: vm-pipeline
+          mountPath: /mount-path
+      volumes:
+      - name: volume-pipeline
+        persistentVolumeClaim:
+          claimName: pvc-pipeline
+
+        
