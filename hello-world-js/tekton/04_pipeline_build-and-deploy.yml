@@ -22,6 +22,9 @@ spec:
     - name: imageTag
       description: Image tag
       default: "latest"
+    - name: dockerfilePath
+      description: The path to the Dockerfile, used by Kaniko
+      default: "./Dockerfile"
   tasks:
     - name: clone-repo
       taskRef:
@@ -51,6 +54,8 @@ spec:
           value: $(params.pathToContext)
         - name: IMAGE
           value: $(params.imageUrl):$(params.imageTag)
+        - name: DOCKERFILE
+          value: $(params.dockerfilePath)
     - name: deploy-to-cluster
       taskRef:
         name: deploy-using-kubectl

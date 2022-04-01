@@ -8,10 +8,13 @@ COPY . .
 RUN npm install
 
 # Define env variable PORT
-ENV PORT=8080
+# ENV PORT=8080
 
 # Expose PORT
-EXPOSE ${PORT}
+# EXPOSE ${PORT}
 
 # Run program
 CMD [ "node", "server.js" ]
+
+# See https://stackoverflow.com/questions/46917831/how-to-load-several-environment-variables-without-cluttering-the-dockerfile
+# ENTRYPOINT ["sh", "./start.sh"]

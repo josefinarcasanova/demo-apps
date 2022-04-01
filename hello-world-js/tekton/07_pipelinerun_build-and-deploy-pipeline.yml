@@ -9,7 +9,7 @@ spec:
     - name: gitUrl
       value: https://github.com/josefinarcasanova/demo-apps
     - name: gitRevision
-      value: master
+      value: main
     - name: pathToContext
       value: hello-world-js
     - name: deployment_yaml
@@ -18,8 +18,10 @@ spec:
       value: us.icr.io/jrcasan-demo-apps/hello-world-js
     - name: imageTag
       value: latest
-  serviceAccountName: pipeline-account
+    - name: dockerfilePath
+      value: hello-world-js/Dockerfile
+  serviceAccountName: default #pipeline-account
   workspaces:
     - name: git-source
       persistentVolumeClaim:
-        claimName: pvc-pipeline
+        claimName: pvc-source-pipeline

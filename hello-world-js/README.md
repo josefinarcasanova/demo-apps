@@ -8,8 +8,11 @@ This sample has a few important files:
 - a `Dockerfile`, which will build the container image based on the source code
 - Node dependencies on the `package-lock` and `package` JSON files.
 - `server.js` the fancy little program
+- a `build-and-run.sh` shell script to automate the process of building and running the app using Docker
 
-## Run app locally
+It also has a `tekton` folder where you'll find `YAML` files to create deployments and pipelines for this application, to be used in a Kubernetes environment.
+
+## Run app manually on a local environment
 
 CD to the repository directory:
 
@@ -22,20 +25,20 @@ cd /repository/directory
 Build the image:
 
 ```bash
-docker build . --tag <image_tag>
+docker build . -t <image_tag>
 ```
 
-**Note:** for using IBM Container registry, `<image_tag>` format should be `us.icr.io/<my_namespace>/<my_repository>:<my_tag>`
+**Note:** for uploading to IBM Container registry, `<image_tag>` format should be `us.icr.io/<my_namespace>/<my_repository>:<my_tag>`
 
 - - - 
 
 Run it:
 
 ```bash
-docker run -p 8080:8080 <image_tag>
+docker run -p <PORT>:<PORT> <image_tag>
 ```
 
-**Note:** another port could be used. Validate if project has an environment variable defined or it.
+**Note:** by default, the application uses port 8080, but another could be used. Check the [.env file](.env)to make sure you're using the correct value.
 
 - - - 
 
@@ -44,3 +47,19 @@ If you can't remember the image tag, list them by running:
 ```bash
 docker image list
 ```
+
+## Run app through the shell script
+
+CD to the repository directory:
+
+```bash
+cd /repository/directory
+```
+
+Run the shell script:
+
+```
+sh build-and-run.sh -t <image_tag>
+```
+
+This will build the image tagging it with the `<image_tag>` value you sent as argument, load environment variables from the `.env` file, and run it, exposing the port defined there.
