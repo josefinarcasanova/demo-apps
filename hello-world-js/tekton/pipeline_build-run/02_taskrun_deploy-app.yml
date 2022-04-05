@@ -1,0 +1,19 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  generateName: deploy-to-iks-
+spec:
+  taskRef:
+    name: deploy-to-iks
+  params:
+    - name: ibmcloud-apikey
+      value: H3fJ4oUExFQBSRr0zTdevNK90gm2X8bMHgCyw5HBsWXH
+    - name: cluster-name-or-id
+      value: jrcasan-k8s-cluster
+    - name: deployment-yaml
+      value: hello-world-js-from-task
+  # workspaces:
+  # - name: default
+  #   persistentVolumeClaim:
+  #     claimName: pvc-source-pipeline

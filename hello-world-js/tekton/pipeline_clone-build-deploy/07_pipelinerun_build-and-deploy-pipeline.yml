@@ -15,12 +15,12 @@ spec:
     - name: deployment_yaml
       value: hello-world-js/deployment.yaml
     - name: imageUrl
-      value: us.icr.io/jrcasan-demo-apps/hello-world-js
+      value: us.icr.io/jrcasan-icr-namespace/hello-world-js-pipeline
     - name: imageTag
       value: latest
     - name: dockerfilePath
       value: hello-world-js/Dockerfile
-  serviceAccountName: default #pipeline-account
+  serviceAccountName: pipeline-account
   workspaces:
     - name: git-source
       persistentVolumeClaim:

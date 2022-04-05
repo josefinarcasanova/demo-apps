@@ -1,0 +1,39 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: deploy-to-iks
+spec:
+  params:
+    - name: ibmcloud-apikey
+      description: IBM Cloud API Key
+      default: ""
+    - name: cluster-name-or-id
+      description: IKS cluster name or id. Can be obtained by running "ibmcloud ks cluster ls"
+      default: ""
+    - name: deployment-yaml
+      description: path to deployment YAML file
+      default: app
+    # - name: app-name
+    #   description: name that will be given to the new deployment
+    #   default: new-deployment
+    # - name: image-tag
+    #   description: image tag
+    #   default: latest
+    # - name: secret-name
+    #   description: secret name
+    #   default: ""
+  # workspaces:
+  #   - name: artifacts
+  #     description: The git repo will be cloned onto the volume backing this workspace
+  #     mountPath: /artifacts
+  steps:
+    - name: deploy-app
+      image: icr.io/continuous-delivery/pipeline/pipeline-base-image:2.17
+      command: ["/bin/bash", "-c"]
+      args:
+        - |
+          ibmcloud login -r us-south --apikey $(params.ibmcloud-apikey)
+          ibmcloud ks cluster config --cluster $(params.cluster-name-or-id)
+
+          kubectl apply -f $(params.deployment-yaml)

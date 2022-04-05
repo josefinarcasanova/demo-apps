@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: buildah-build-my-repo
+spec:
+  taskRef:
+    name: buildah
+  params:
+  - name: IMAGE
+    value: us.icr.io/jrcasan-icr-namespace/hello-world-js:latest
+  - name: DOCKERFILE
+    value: ./Dockerfile
+  - name: CONTEXT
+    description: Path to the directory to use as context.
+    value: ./hello-world-js
+  - name: TLSVERIFY
+    value: "false"
+  - name: SKIP_PUSH
+    value: "true"
+  workspaces:
+  - name: source
+    persistentVolumeClaim:
+      claimName: pvc-source-pipeline
