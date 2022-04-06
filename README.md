@@ -11,7 +11,7 @@ This repository is meant to store small demo applications for showcasing IBM Clo
 
 The available demos apps are:
 
-- [connect-mongodb-py](./connect-mongodb-py)
+- [current-time-py](./current-time-py/)
   - **Description:** application that inserts a JSON on a MongoDB database containing the current day and time.
   - **Use Cases:** FaaS-related use cases, be it on Cloud Functions or Code Engine. Examples of application integration, or batch processes (Code Engine Jobs).
 - [hello-world-js](./hello-world-js/)

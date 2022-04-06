@@ -1,4 +1,4 @@
 node_modules/
 __pycache__/
-connect-mongodb-py/db_cert
+db_cert
 .DS_Store

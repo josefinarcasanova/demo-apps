@@ -2,6 +2,15 @@
 
 A pretty simple "Hello World" application written using Node.js. Nothing fancy, just functional.
 
+- [Hello World JS](#hello-world-js)
+  - [File Structure](#file-structure)
+  - [Run app manually on a local Docker environment](#run-app-manually-on-a-local-docker-environment)
+  - [Run app through the shell script](#run-app-through-the-shell-script)
+
+- - - 
+
+## File Structure
+
 This sample has a few important files:
 
 - an `.env` file containing all the environment variables
@@ -12,7 +21,7 @@ This sample has a few important files:
 
 It also has a `tekton` folder where you'll find `YAML` files to create deployments and pipelines for this application, to be used in a Kubernetes environment.
 
-## Run app manually on a local environment
+## Run app manually on a local Docker environment
 
 CD to the repository directory:
 
@@ -38,7 +47,7 @@ Run it:
 docker run -p <PORT>:<PORT> <image_tag>
 ```
 
-**Note:** by default, the application uses port 8080, but another could be used. Check the [.env file](.env)to make sure you're using the correct value.
+**Note:** by default, the application uses port 8080, but another could be used. Check the [.env file](.env) to make sure you're using the correct value.
 
 - - - 
 
@@ -62,4 +71,4 @@ Run the shell script:
 sh build-and-run.sh -t <image_tag>
 ```
 
-This will build the image tagging it with the `<image_tag>` value you sent as argument, load environment variables from the `.env` file, and run it, exposing the port defined there.
+This will build the image tagging it with the `<image_tag>` value you sent as argument, load environment variables from the [.env file](.env), and run it, exposing the port defined there.

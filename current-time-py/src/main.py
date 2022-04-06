@@ -16,7 +16,9 @@ def main():
     }
 
     result = insert_data(json_object)
-    print('Successfully inserted new registry into database.\nRegistry ', json_object)
+    
+    if (result):
+        print('Successfully inserted new registry into database.\nRegistry ', json_object)
 
 if __name__ == '__main__':
     main()                      # Run Main program
