@@ -1,4 +1,14 @@
+# NodeJS
 node_modules/
+
+# Python
 __pycache__/
+
+# Environment Variables
+.env
+
+# Certificates
 db_cert
+
+# MacOS Files
 .DS_Store
