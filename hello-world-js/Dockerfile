@@ -1,5 +1,5 @@
 # Import Node image
-FROM node:12-alpine
+FROM node:lts-alpine3.15
 
 # Copy files into container
 COPY . .
