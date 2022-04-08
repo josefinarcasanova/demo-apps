@@ -8,7 +8,7 @@ __pycache__/
 .env
 
 # Certificates
-db_cert
+# db_cert
 
 # MacOS Files
 .DS_Store
