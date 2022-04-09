@@ -12,3 +12,6 @@ __pycache__/
 
 # MacOS Files
 .DS_Store
+
+# Certificates
+db_cert
