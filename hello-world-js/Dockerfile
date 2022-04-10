@@ -1,8 +1,11 @@
 # Import Node image
-FROM node:lts-alpine3.15
+FROM node:latest
+
+# Set working directory
+WORKDIR /usr/app
 
 # Copy files into container
-COPY . .
+COPY ./ /usr/app
 
 # Install dependencies
 RUN npm install

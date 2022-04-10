@@ -12,7 +12,7 @@ done
 
 [ -z "$IMAGE_TAG" ] && echo "Missing required -t flag for image tag"  && exit 1
 
-docker build -t ${IMAGE_TAG} . 
+docker build . -t ${IMAGE_TAG}
 
 source .env
 
