@@ -11,9 +11,12 @@ This repository is meant to store small demo applications for showcasing IBM Clo
 
 The available demos apps are:
 
-- [current-time-py](./current-time-py/)
-  - **Description:** application that inserts a JSON on a MongoDB database containing the current day and time.
+- [current-time-insert-py](./current-time-insert-py/)
+  - **Description:** application that inserts a JSON on a MongoDB database containing the current day and time. Pulls data from Cloud Object Storage for database authentication.
   - **Use Cases:** FaaS-related use cases, be it on Cloud Functions or Code Engine. Examples of application integration, or batch processes (Code Engine Jobs).
+- [current-time-print-py](./current-time-insert-py/)
+  - **Description:** application that prints the current day and time.
+  - **Use Cases:** FaaS-related use cases, be it on Cloud Functions or Code Engine. Batch processes (Code Engine Jobs).
 - [hello-world-js](./hello-world-js/)
   - **Description:** exposes a server (on port 8080 by default) with a "Hello ${TARGET}" message.
   - **Use Cases:** application deployment on any PaaS service (RHOS, IKS, CE). **Update:** can also be used to show how environment variables work, since I've added them for both `TARGET` and `PORT`.

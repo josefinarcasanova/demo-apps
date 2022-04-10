@@ -1,8 +1,8 @@
-# Current Time PY
+# Current Time Insert PY
 
 A mock-up Python application that inserts a JSON on a MongoDB database containing the current day and time.
 
-- [Current Time PY](#current-time-py)
+- [Current Time Insert PY](#current-time-insert-py)
   - [File Structure](#file-structure)
   - [Run app locally](#run-app-locally)
     - [Using Python](#using-python)
@@ -14,11 +14,13 @@ A mock-up Python application that inserts a JSON on a MongoDB database containin
 
 This app has a few important files:
 
-- an `.env` file containing all the environment variables
 - a `Dockerfile`, which will build the container image based on the source code
 - Application dependencies on the `requirements.txt` file
-- `database.py` which contains the scripts for altering and interacting with the MongoDB database
-- And `main.js`, which is the main program
+- A `src` folder containing the app's source code. There you'll find:
+  - `database.py` file containing scripts for altering and interacting with the MongoDB database
+  - `icos.py` script regarding connection and file downloads from IBM Cloud Object Storage (ICOS)
+  - `main.js`, which is the main program
+  - `.env` file containing all the environment variables
 
 ## Run app locally
 
@@ -41,6 +43,7 @@ pip install -r requirements.txt
 Run app by running:
 
 ```
+cd ./src
 python main.py
 ```
 

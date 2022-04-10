@@ -1,8 +1,8 @@
-# Current Time PY
+# Current Time Print PY
 
-A mock-up Python application that inserts a JSON on a MongoDB database containing the current day and time.
+A mock-up Python application that prints the current day and time in Uruguay.
 
-- [Current Time PY](#current-time-py)
+- [Current Time Print PY](#current-time-print-py)
   - [File Structure](#file-structure)
   - [Run app locally](#run-app-locally)
     - [Using Python](#using-python)
@@ -14,10 +14,8 @@ A mock-up Python application that inserts a JSON on a MongoDB database containin
 
 This app has a few important files:
 
-- an `.env` file containing all the environment variables
 - a `Dockerfile`, which will build the container image based on the source code
 - Application dependencies on the `requirements.txt` file
-- `database.py` which contains the scripts for altering and interacting with the MongoDB database
 - And `main.js`, which is the main program
 
 ## Run app locally

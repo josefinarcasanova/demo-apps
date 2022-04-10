@@ -1,27 +1,47 @@
 import pymongo
 
 from pymongo import MongoClient
+from icos import create_cos_client, get_cos_file
+
 from os import environ
+from dotenv import load_dotenv
+
+# Load environment variables from .env
+load_dotenv()   
 
 def connect_to_database():
     # Connect to mongodb using pymongo
-    CONNECTION_STRING = environ['MONGO_URL']
+    mongo_connect_str = environ['MONGO_URL']
 
-    TLS_FILE = environ['TLS_FILE_PATH']
+    tls_file = retreive_certificate()
+    tls_file_name = environ['TLS_FILE_NAME']
 
     # Create a connection using MongoClient
-    client = MongoClient(CONNECTION_STRING, tls=True, tlsCAFile=TLS_FILE)
+    client = MongoClient(
+        mongo_connect_str,
+        tls=True,
+        tlsCAFile=tls_file_name
+    )
 
     database = client[environ['MONGO_DB_NAME']]
 
     return database
 
+def retreive_certificate():
+    return get_cos_file(
+        cos_client=None,
+        bucket_name=None,
+        file_name=environ['TLS_FILE_NAME'],
+        file_key=environ['TLS_FILE_NAME']
+    )
+
 # Get all registries from collection
-def get_data():
-    database = connect_to_database()
+def get_data(database):
+    if database == None:
+        database = connect_to_database()
 
     # Select collection
-    collection_name = environ['COLLECTION_NAME']
+    collection_name = environ['MONGO_COLLECTION_NAME']
     collection = database[collection_name]
 
     # Get all docs
@@ -34,12 +54,13 @@ def get_data():
     return res[0]
 
 # Insert a JSON object into the database
-def insert_data(json_object):
+def insert_data(database, json_object):
     # Create DB Client
-    database = connect_to_database()
+    if database == None:
+        database = connect_to_database()
 
     # Select collection
-    collection_name = environ['COLLECTION_NAME']
+    collection_name = environ['MONGO_COLLECTION_NAME']
     collection      = database[collection_name]
 
     # Insert new item
@@ -49,4 +70,4 @@ def insert_data(json_object):
     database.client.close()
 
     #return insert_result
-    return insert_result.inserted_id != None 
+    return insert_result.inserted_id != None

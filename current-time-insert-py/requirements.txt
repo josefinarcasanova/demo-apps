@@ -1,3 +1,4 @@
 pymongo
 python-dotenv
 pytz
+ibm-cos-sdk
