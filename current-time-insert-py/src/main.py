@@ -3,7 +3,6 @@ import pytz
 
 from dotenv import load_dotenv
 from database import insert_data
-from icos import create_cos_client, get_cos_file
 from os import environ
 
 # Load environment variables from .env
@@ -31,4 +30,3 @@ def main():
 # Run Main program
 if __name__ == '__main__':
     main()
-    
