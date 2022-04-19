@@ -15,20 +15,8 @@ def connect_to_database():
         # Connect to mongodb using pymongo
         mongo_connect_str = environ['MONGO_URL']
 
-        print("------------------------------------------------")
-
-        print("Dir before", listdir("."))
-
         tls_file = retreive_certificate()
-        tls_file_name = environ['TLS_FILE_NAME']
-
-        print("Dir after", listdir("."))
-
-
-        print("\nConnect str:", mongo_connect_str)
-        print("\ntls_file", tls_file)
-        print("\ntls_file_name", tls_file_name)
-            
+        tls_file_name = environ['TLS_FILE_NAME']           
 
         # Create a connection using MongoClient
         client = MongoClient(
@@ -36,9 +24,6 @@ def connect_to_database():
             tls=True,
             tlsCAFile=tls_file_name
         )
-
-        print("\nclient", client)
-        print("")
 
         database = client[environ['MONGO_DB_NAME']]
 
