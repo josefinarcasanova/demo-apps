@@ -33,10 +33,10 @@ The app uses the following environment variables:
 - `MONGO_DB_NAME`: database name. Default: `admin`
 - `MONGO_COLLECTION_NAME`: collection where data will be inserted/retrieved
 - `COS_API_KEY_ID`: ICOS instance's APIKEY value. Can be obtained from the instance's `Service Credentials` section on IBM Cloud.
-- `COS_INSTANCE_ID`: : ICOS instance ID. Can be obtained from the instance's `Service Credentials` section on IBM Cloud.
-- `COS_ENDPOINT`. ICOS endpoint. **Not** to be confused with the value found on `Service Credentials`. For more info, see [Endpoints and storage locations](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) Default: `https://s3.us-south.cloud-object-storage.appdomain.cloud`
+- `COS_INSTANCE_ID`: ICOS instance ID. Can be obtained from the instance's `Service Credentials` section on IBM Cloud.
+- `COS_ENDPOINT`: ICOS endpoint. **Not** to be confused with the value found on `Service Credentials`. For more info, see [Endpoints and storage locations](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) Default: `https://s3.us-south.cloud-object-storage.appdomain.cloud`
 - `COS_BUCKET_NAME`: bucket name where the info will be retrieved/stored
-- `COS_BUCKET_LOCATION`. Bucket location/region. Default: `us-south`
+- `COS_BUCKET_LOCATION`: bucket location/region. Default: `us-south`
 
 - - -
 
