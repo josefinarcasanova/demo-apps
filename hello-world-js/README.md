@@ -4,6 +4,7 @@ A pretty simple "Hello World" application written using Node.js. Nothing fancy, 
 
 - [Hello World JS](#hello-world-js)
   - [File Structure](#file-structure)
+  - [Environment variables](#environment-variables)
   - [Run app manually on a local Docker environment](#run-app-manually-on-a-local-docker-environment)
   - [Run app through the shell script](#run-app-through-the-shell-script)
 
@@ -20,6 +21,15 @@ This sample has a few important files:
 - a `build-and-run.sh` shell script to automate the process of building and running the app using Docker
 
 It also has a `tekton` folder where you'll find `YAML` files to create deployments and pipelines for this application, to be used in a Kubernetes environment.
+
+## Environment variables
+
+The app uses the following environment variables:
+
+- `TARGET`: target the app will say hello to. Default: `World`.
+- `PORT`: port the app will run on. Default: `8080`.
+
+- - -
 
 ## Run app manually on a local Docker environment
 
