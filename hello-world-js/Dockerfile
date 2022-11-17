@@ -1,5 +1,5 @@
 # Import Node image
-FROM node:latest
+FROM node:alpine
 
 # Set working directory
 WORKDIR /usr/app

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-js
+  namespace: jrcasan
+  labels:
+    app: hello-world-js
+    user: jrcasan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-js
+  template:
+    metadata:
+      name: hello-world-js
+      labels:
+        app: hello-world-js
+        user: jrcasan
+    spec:
+      containers:
+      - name: hello-world-js
+        image: us.icr.io/jrcasan/hello-world-js:latest
+        env:
+        - name : TARGET
+          value: "Josefina"
+        - name: PORT
+          value: "8080"
