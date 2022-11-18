@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-world-js-ingress
+  annotations:
+    kubernetes.io/ingress.class: "public-iks-k8s-nginx"
+spec:
+  rules:
+    # Replace with the IBM-provided Ingress subdomain or your custom domain.
+  - host: build-labs-latam-iks-shar-2bef1f4b4097001da9502000c44fc2b2-0000.us-south.containers.appdomain.cloud
+    http:
+      paths:
+        # Path that your app is listening on
+      - path: /               
+        pathType: Prefix
+        backend:
+          service:
+            # Service(s) you created for exposing the app
+            name: hello-world-js-service
+            port:
+              # Port your service listens to (same as Service)
+              number: 80

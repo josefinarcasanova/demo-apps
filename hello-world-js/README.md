@@ -5,8 +5,11 @@ A pretty simple "Hello World" application written using Node.js. Nothing fancy, 
 - [Hello World JS](#hello-world-js)
   - [File Structure](#file-structure)
   - [Environment variables](#environment-variables)
-  - [Run app manually on a local Docker environment](#run-app-manually-on-a-local-docker-environment)
-  - [Run app through the shell script](#run-app-through-the-shell-script)
+  - [Runing the app](#runing-the-app)
+    - [Using Docker](#using-docker)
+    - [Using a Shell Script](#using-a-shell-script)
+  - [Deploying to IBM Kubernetes Service](#deploying-to-ibm-kubernetes-service)
+    - [References](#references)
 
 - - - 
 
@@ -31,7 +34,9 @@ The app uses the following environment variables:
 
 - - -
 
-## Run app manually on a local Docker environment
+## Runing the app 
+
+### Using Docker
 
 CD to the repository directory:
 
@@ -67,7 +72,7 @@ If you can't remember the image tag, list them by running:
 docker image list
 ```
 
-## Run app through the shell script
+### Using a Shell Script
 
 CD to the repository directory:
 
@@ -82,3 +87,45 @@ sh build-and-run.sh -t <image_tag>
 ```
 
 This will build the image tagging it with the `<image_tag>` value you sent as argument, load environment variables from the [.env file](.env), and run it, exposing the port defined there.
+
+## Deploying to IBM Kubernetes Service
+
+To create a secret to pull images from IBM Container Registry, you must first create a [Service ID](https://cloud.ibm.com/iam/serviceids), assign policies to enable access to IBM Container Registry, and [create an API Key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#create_user_key) associated to it as means of authentication. See [Setting up an image registry](https://cloud.ibm.com/docs/containers?topic=containers-registry#other_registry_accounts) for more information.
+
+Create an IBM Cloud IAM [service ID](https://cloud.ibm.com/docs/account?topic=account-serviceids&interface=ui):
+
+```
+ibmcloud iam service-id-create <sid-name> --description "<some-description>"
+```
+
+Then, create a custom IBM Cloud IAM policy for your cluster service ID that grants access to IBM Cloud Container Registry.
+
+```
+ibmcloud iam service-policy-create <cluster_service_ID> --roles <service_access_role> --service-name container-registry [--region <IAM_region>] [--resource-type namespace --resource <registry_namespace>]
+```
+
+Create an API Key on IBM Cloud:
+
+```
+ibmcloud iam service-api-key-create <cluster_name>-<namespace>-key <cluster_name>-<namespace>-id --description "API key for service ID <service_id> in Kubernetes cluster <cluster_name> namespace <namespace>"
+```
+
+Now, log into your cluster, and create the Secret:
+
+```
+kubectl --namespace <namespace> create secret docker-registry <secret-name> \
+    --docker-server=https://<region>.icr.io \
+    --docker-username=iamapikey \
+    --docker-password=<api-key> \
+    --docker-email=<docker-email>
+```
+
+And apply the deployment YAML found at the [`kubernetes` folder](./kubernetes/):
+
+```
+kubectl apply -f deployment.yaml
+```
+
+### References
+
+- [Documentation - Setting up an image registry](https://cloud.ibm.com/docs/containers?topic=containers-registry#other_registry_accounts)

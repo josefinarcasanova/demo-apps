@@ -15,3 +15,5 @@ __pycache__/
 
 # Certificates
 db_cert
+hello-world-js/kubernetes/aux-ingress.full.yaml
+hello-world-js/kubernetes/aux-ingress.yaml

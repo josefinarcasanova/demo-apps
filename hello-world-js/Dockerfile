@@ -1,5 +1,5 @@
 # Import Node image
-FROM node:alpine
+FROM --platform=linux/amd64 node:current-alpine
 
 # Set working directory
 WORKDIR /usr/app

@@ -7,7 +7,7 @@ metadata:
     app: hello-world-js
     user: jrcasan
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: hello-world-js
@@ -19,10 +19,14 @@ spec:
         user: jrcasan
     spec:
       containers:
-      - name: hello-world-js
-        image: us.icr.io/jrcasan/hello-world-js:latest
-        env:
-        - name : TARGET
-          value: "Josefina"
-        - name: PORT
-          value: "8080"
+        - name: hello-world-js
+          image: us.icr.io/jrcasan/hello-world-js:latest
+          imagePullPolicy: Always                           #IfNotPresent
+          env:
+            - name: TARGET
+              value: "Josefina"
+            - name: PORT
+              value: "80"
+      imagePullSecrets:
+        - name: jrcasan-us-icr
+        
