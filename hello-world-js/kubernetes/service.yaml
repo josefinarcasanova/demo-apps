@@ -2,11 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: hello-world-js-service              # Service Name
+  namespace: jrcasan
 spec:
+  type: ClusterIP
   selector:
-    app.kubernetes.io/name: hello-world-js  # App to Match
+    app: hello-world-js                     # App to Match
   ports:
-  - name: service-port                      # Port Name
-    protocol: TCP
-    port: 80                                # Exposed Port
-    targetPort: 80                          # Container Port
+  - port: 8081                              # Port exposed by service (cluster-level)
+    targetPort: 8081                        # Port the pod/container is exposed i.e. Deployment port (pod-level)

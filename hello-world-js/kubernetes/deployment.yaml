@@ -21,12 +21,12 @@ spec:
       containers:
         - name: hello-world-js
           image: us.icr.io/jrcasan/hello-world-js:latest
-          imagePullPolicy: Always                           #IfNotPresent
+          imagePullPolicy: IfNotPresent
           env:
             - name: TARGET
               value: "Josefina"
             - name: PORT
-              value: "80"
+              value: "8081"
       imagePullSecrets:
         - name: jrcasan-us-icr
         
