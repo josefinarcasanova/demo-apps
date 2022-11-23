@@ -1,16 +1,19 @@
-# DEMO APPS
+# Demo Apps
 
-This repository is meant to store small demo applications for showcasing IBM Cloud services like Code Engine, Red Hat OpenShift, Kubernetes Service, among others. I've decided to leave this repo public in case someone else wants to try them out.
+This repository is meant to store small demo applications for showcasing IBM Cloud services like Code Engine, Red Hat OpenShift, Kubernetes Service, among others.
 
-- [DEMO APPS](#demo-apps)
+I've decided to leave this repo public in case someone else wants to try them out.
+
+- [Demo Apps](#demo-apps)
   - [Catalog](#catalog)
-  - [Run containerized apps locally](#run-containerized-apps-locally)
-  - [Push images to ICR](#push-images-to-icr)
+  - [Running containerized apps locally](#running-containerized-apps-locally)
+  - [Pushing container images to ICR](#pushing-container-images-to-icr)
 
 ## Catalog
 
-The available demos apps are:
+Demos apps available are:
 
+<!--
 - [current-time-insert-py](./current-time-insert-py/)
   - **Description:** application that inserts a JSON on a MongoDB database containing the current day and time. Pulls data from Cloud Object Storage for database authentication.
   - **Use Cases:** FaaS-related use cases, be it on Cloud Functions or Code Engine. Examples of application integration, or batch processes (Code Engine Jobs).
@@ -23,16 +26,21 @@ The available demos apps are:
 - [send-email-app](./send-email-app)
   - **Description:** application that sends emails via SendGrid. **Note:** it is untested due to invalid SendGrid credentials.
   - **Use Cases:** FaaS-related use cases, be it on Cloud Functions or Code Engine. Examples of on-demand code executions.
+-->
 
-## Run containerized apps locally
+App                                                       | Description                                                                     | Use Cases
+----------------------------------------------------------|---------------------------------------------------------------------------------|--------------------------------------------------------
+[current-time-insert-py](./current-time-insert-py/)       | Inserts a JSON on a MongoDB database containing the current day and time. Pulls data from ICOS for database authentication. | FaaS-related use cases, be it on Cloud Functions or Code Engine. Examples of application integration, or batch processes (Code Engine Jobs).
+[current-time-print-py](./current-time-insert-py/)        | Prints current day and time.                                                    | FaaS-related use cases. Batch processes (Code Engine Jobs).
+[hello-world-js](./hello-world-js/)                       | Exposes a server with a `Hello ${TARGET}` message. Uses environment variables. Provides YAML manifests for IKS/ROKS deployments. | Environment variables. App deployment on PaaS services (RHOS, IKS, CE).
 
-CD to the repository directory:
+## Running containerized apps locally
+
+Change directory to where the repository is:
 
 ```bash
-cd /repository/directory
+cd /<repository-directory>
 ```
-
-- - - 
 
 Build the image:
 
@@ -40,27 +48,25 @@ Build the image:
 docker build . --tag <image_tag>
 ```
 
-**Note:** for using IBM Container registry, `<image_tag>` format should be `us.icr.io/<my_namespace>/<my_repository>:<my_tag>`
+> **Note:** for using IBM Container registry, `<image_tag>` format should be `<region>.icr.io/<my_namespace>/<my_repository>:<my_tag>`
 
-- - - 
-
-Run it:
+Run application.
 
 ```bash
-docker run -p 8080:8080 <image_tag>
+docker run -p <local-port>:<container-port> <image_tag>
 ```
 
-**Note:** another port could be used. Validate if project has an environment variable defined or it.
+Where:
 
-- - - 
+- `<local-port>`: host machine (`127.0.0.1`) port.
+- `<container-port>`: container port. It's the one you expose on your Dockerfile, or through environment variables.
+- `<image_tag>`: image tag.
 
-If you can't remember the image tag, list them by running:
+For more info see the [command reference](https://docs.docker.com/engine/reference/commandline/run/).
 
-```bash
-docker image list
-```
+> **Note:** if you can't remember the image tag, list them by running `docker image list`.
 
-## Push images to ICR
+## Pushing container images to ICR
 
 Push image to IBM Container Registry (ICR) by running:
 
