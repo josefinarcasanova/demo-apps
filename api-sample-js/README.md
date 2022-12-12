@@ -9,7 +9,7 @@
 
 Application routes are:
 
-- `/index`. Landing page.
+- `/`. Landing page.
 - `/hello`. Displays "Hello $TARGET".
 - `/author`. Displays contact information.
 
@@ -34,5 +34,5 @@ For more information see [ExpressJS Project Structure ](https://dev.to/brianemil
 
 The app uses the following environment variables:
 
-- `TARGET`: target the app will say hello to. Default: `World`.
+- `TARGET`: target the app will say hello to. Default: `Josefina`.
 - `PORT`: port the app will run on. Default: `8080`.
