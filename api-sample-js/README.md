@@ -28,11 +28,11 @@ The repository is structured as follows:
 └── README.md                   # Present document
 ```
 
-For more information see [ExpressJS Project Structure ](https://dev.to/brianemilius/expressjs-project-structure-2ka4).
+For more information see [ExpressJS Project Structure](https://dev.to/brianemilius/expressjs-project-structure-2ka4).
 
 ## Environment variables
 
 The app uses the following environment variables:
 
-- `TARGET`: target the app will say hello to. Default: `Josefina`.
+- `HELLO_TARGET`: target the app will say hello to. Default: `Josefina`.
 - `PORT`: port the app will run on. Default: `8080`.
